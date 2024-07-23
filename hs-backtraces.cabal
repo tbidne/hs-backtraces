@@ -1,0 +1,50 @@
+cabal-version:      2.4
+name:               hs-backtraces
+version:            0.1
+license:            MIT
+license-file:       LICENSE
+tested-with:        GHC ==9.10.1
+copyright:          2024 Thomas Bidne
+author:             Thomas Bidne
+maintainer:         tbidne@protonmail.com
+homepage:           https://github.com/tbidne/hs-backtraces/
+bug-reports:        https://github.com/tbidne/hs-backtraces/issues
+synopsis:           Backtrace demo
+description:        Backtrace demo
+category:           Demo
+extra-source-files:
+  .gitignore
+  cabal.project
+  README.md
+
+source-repository head
+  type:     git
+  location: https://github.com/tbidne/hs-backtraces
+
+common common-lang
+  default-extensions:
+    DeriveAnyClass
+    DerivingStrategies
+    DerivingVia
+    OverloadedStrings
+
+  default-language:   GHC2021
+
+library
+  import:          common-lang
+  exposed-modules: Lib
+  build-depends:
+    , base  ^>=4.20.0.0
+    , text  ^>=2.1
+
+  hs-source-dirs:  src
+
+executable hs-backtraces
+  import:         common-lang
+  main-is:        Main.hs
+  build-depends:
+    , base
+    , hs-backtraces
+
+  hs-source-dirs: app
+  ghc-options:    -threaded -with-rtsopts=-N
